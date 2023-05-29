@@ -125,13 +125,6 @@ function App() {
                 card={selectedCard}
                 isOpen={isImgPopupOpen}
                 onClose={closeAllPopups} />
-            <div className="popup popup_type_image">
-                <figure className="popup__figure-image">
-                    <img className="popup__preview-image" src="#" alt="" />
-                    <button className="popup__closed-btn" type="button" ></button>
-                    <figcaption className="popup__title-image"></figcaption>
-                </figure>
-            </div>
         </div>
     );
 }
