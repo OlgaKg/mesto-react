@@ -3,12 +3,14 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
 
 function App() {
 
     const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
     const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
+    const [selectedCard, setSelectedCard] = useState({});
 
     function handleEditAvatarClick() {
         setEditAvatarPopupOpen(true);
@@ -22,20 +24,25 @@ function App() {
         setAddPlacePopupOpen(true);
     }
 
+    function handleCardClick(card) {
+        setSelectedCard(card);
+    }
+
     function closeAllPopups() {
         setEditAvatarPopupOpen(false);
         setEditProfilePopupOpen(false);
         setAddPlacePopupOpen(false);
+        setSelectedCard({});
     }
 
     return (
-        <div className="App">
+        <div className="page">
             <Header />
             <Main
-            
                 onEditAvatar={handleEditAvatarClick}
                 onEditProfile={handleEditProfileClick}
                 onAddPlace={handleAddPlaceClick}
+                onCardClick={handleCardClick}
             />
             <Footer />
             <PopupWithForm
@@ -110,6 +117,18 @@ function App() {
                     <span className="popup__input-error image-link-input-error"></span>
                 </>
             </PopupWithForm>
+            <ImagePopup
+                name="image"
+                card={selectedCard}
+                onClose={closeAllPopups} />
+            <div className="popup popup_type_image">
+                <figure className="popup__figure-image">
+                    <img className="popup__preview-image" src="#" alt="" />
+                    <button type="button" className="popup__closed-btn"></button>
+                    <figcaption className="popup__title-image"></figcaption>
+                </figure>
+            </div>
+
 
 
 

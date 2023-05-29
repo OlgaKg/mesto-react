@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import api from "../utils/api.js";
 import Card from "./Card.js";
 
-function Main(props) {
+
+function Main(props, onCardClick) {
     const [userName, setUserName] = useState("");
     const [userDescription, setUserDescription] = useState("");
     const [userAvatar, setUserAvatar] = useState("");
@@ -15,7 +16,6 @@ function Main(props) {
                 setUserDescription(userData.about);
                 setUserAvatar(userData.avatar);
                 setCards(initialCards);
-
             }).catch((err) => {
                 console.log(err);
             });
@@ -37,12 +37,12 @@ function Main(props) {
                 <button type="button" className="profile__add-btn profile__add-btn-open-popup" onClick={props.onAddPlace}></button>
             </section>
             <section className="elements" aria-label="галерея">
-            <ul className="elements__list">
-                {cards.map(card => (
-                    <Card key={card._id}
-                        card={card} />
+                {cards.map((card) => (
+                    <Card
+                        key={card._id}
+                        card={card}
+                        onCardClick={onCardClick} />
                 ))}
-</ul>
             </section>
         </main>
     );

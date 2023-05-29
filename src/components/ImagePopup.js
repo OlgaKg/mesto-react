@@ -1,28 +1,13 @@
-function ImagePopup() {
-<div className={`popup popup_type_${props.name}`}>
-<figure className={`popup__figure-${props.name}`}>
-    <img className="popup__preview-image" src="#" alt="" />
-    <button className="popup__closed-btn" type="button" onClick={props.onClose}></button>
-    <figcaption className="popup__title-image"></figcaption>
+import React from "react";
+
+function ImagePopup({card}) {
+<div className={`popup popup_type_${card.name} ${card ? "popup_opened" : ''}`}>
+<figure className={`popup__figure-${card.name}`}>
+    <img className={`popup__preview-${card.name}`} src={card.link} alt={`${card.name}`} />
+    <button className="popup__closed-btn" type="button" onClick={card.onClose}></button>
+    <figcaption className="popup__title-image">{card.name}</figcaption>
 </figure>
 </div>
 }
 
 export default ImagePopup;
-
-
-return (
-    <div
-      className={`popup popup-${props.name} ${Object.keys(props.card).length && "popup_opened"}`}
-    >
-      <div className={`popup__container-${props.name}`}>
-        <button
-          onClick={props.onClose}
-          aria-label="Закрыть"
-          className="popup__close-button hover-link"
-        ></button>
-        <img className={`popup__${props.name}`} src={props.card.link} alt={`${props.card.name}`} />
-        <h2 className="popup__subtitle">{props.card.name}</h2>
-      </div>
-    </div>
-  );
