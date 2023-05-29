@@ -12,7 +12,7 @@ function App() {
     const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
     const [isImgPopupOpen, setIsImgPopupOpen] = useState(false)
     const [selectedCard, setSelectedCard] = useState({});
-    
+
 
     function handleEditAvatarClick() {
         setEditAvatarPopupOpen(true);
@@ -29,7 +29,6 @@ function App() {
     function handleCardClick(card) {
         setSelectedCard(card);
         setIsImgPopupOpen(true)
-        
     }
 
     function closeAllPopups() {
@@ -37,7 +36,7 @@ function App() {
         setEditProfilePopupOpen(false);
         setAddPlacePopupOpen(false);
         setIsImgPopupOpen(false);
-        setSelectedCard({});
+        setSelectedCard(false);
     }
 
     return (
@@ -133,29 +132,6 @@ function App() {
                     <figcaption className="popup__title-image"></figcaption>
                 </figure>
             </div>
-
-
-
-
-            {/* 
-              
-                <div className="popup popup_type_image">
-                    <figure className="popup__figure-image">
-                        <img className="popup__preview-image" src="#" alt="" />
-                        <button type="button" className="popup__closed-btn"></button>
-                        <figcaption className="popup__title-image"></figcaption>
-                    </figure>
-                </div>
-                <div className="popup popup_type_confirm">
-                    <div className="popup__container">
-                        <button type="button" className="popup__closed-btn"></button>
-                        <form action="/" className="popup__form popup__form_confirm" name="confirm-form" noValidate>
-                            <h2 className="popup__title">Вы уверены?</h2>
-                            <button type="submit" className="popup__save-btn">Да</button>
-                        </form>
-                    </div>
-                </div>
-              */}
         </div>
     );
 }
