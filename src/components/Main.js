@@ -3,7 +3,7 @@ import api from "../utils/api.js";
 import Card from "./Card.js";
 
 
-function Main(props, onCardClick) {
+function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
     const [userName, setUserName] = useState("");
     const [userDescription, setUserDescription] = useState("");
     const [userAvatar, setUserAvatar] = useState("");
@@ -24,7 +24,7 @@ function Main(props, onCardClick) {
     return (
         <main className="content">
             <section className="profile">
-                <button type="button" className="profile__edit-avatar-btn" onClick={props.onEditAvatar}>
+                <button type="button" className="profile__edit-avatar-btn" onClick={onEditAvatar}>
                     <img className="profile__avatar" src={userAvatar} alt="Аватар Жак-Ив Кусто" />
                 </button>
                 <div className="profile__info">
@@ -32,9 +32,9 @@ function Main(props, onCardClick) {
                         <h1 className="profile__name">{userName}</h1>
                         <p className="profile__profession">{userDescription}</p>
                     </div>
-                    <button type="button" className="profile__edit-btn profile__edit-btn-open-popup" onClick={props.onEditProfile}></button>
+                    <button type="button" className="profile__edit-btn profile__edit-btn-open-popup" onClick={onEditProfile}></button>
                 </div>
-                <button type="button" className="profile__add-btn profile__add-btn-open-popup" onClick={props.onAddPlace}></button>
+                <button type="button" className="profile__add-btn profile__add-btn-open-popup" onClick={onAddPlace}></button>
             </section>
             <section className="elements" aria-label="галерея">
                 {cards.map((card) => (

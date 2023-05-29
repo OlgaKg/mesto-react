@@ -10,7 +10,9 @@ function App() {
     const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
     const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
+    const [isImgPopupOpen, setIsImgPopupOpen] = useState(false)
     const [selectedCard, setSelectedCard] = useState({});
+    
 
     function handleEditAvatarClick() {
         setEditAvatarPopupOpen(true);
@@ -26,12 +28,15 @@ function App() {
 
     function handleCardClick(card) {
         setSelectedCard(card);
+        setIsImgPopupOpen(true)
+        
     }
 
     function closeAllPopups() {
         setEditAvatarPopupOpen(false);
         setEditProfilePopupOpen(false);
         setAddPlacePopupOpen(false);
+        setIsImgPopupOpen(false);
         setSelectedCard({});
     }
 
@@ -118,13 +123,13 @@ function App() {
                 </>
             </PopupWithForm>
             <ImagePopup
-                name="image"
                 card={selectedCard}
+                isOpen={isImgPopupOpen}
                 onClose={closeAllPopups} />
             <div className="popup popup_type_image">
                 <figure className="popup__figure-image">
                     <img className="popup__preview-image" src="#" alt="" />
-                    <button type="button" className="popup__closed-btn"></button>
+                    <button className="popup__closed-btn" type="button" ></button>
                     <figcaption className="popup__title-image"></figcaption>
                 </figure>
             </div>

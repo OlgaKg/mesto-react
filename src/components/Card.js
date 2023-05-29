@@ -1,10 +1,9 @@
 import React from "react";
 
-function Card({card}) {
-    const handleCardClick = (props) => {
-      props.onCardClick(card);
+function Card({card, onCardClick}) {
+    const handleCardClick = () => {
+      onCardClick(card);
     }
-
     return (
         <article className="elements__element">
             <button type="button" className="elements__delete-btn"></button>
