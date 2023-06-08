@@ -93,6 +93,14 @@ class Api {
             })
     }
 
+    changeLikeCardStatus(idCard, isLiked) {
+        if (isLiked) {
+            return this.addLikeCard(idCard);
+        } else {
+            return this.removeLikeCard(idCard);
+        }
+    }
+
     deleteCard(idCard) {
         return fetch(`${this._baseUrl}cards/${idCard}`, {
             method: 'DELETE',
