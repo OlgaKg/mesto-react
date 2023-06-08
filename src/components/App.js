@@ -88,18 +88,9 @@ function App() {
     }
 
     useEffect(() => {
-        api.getUserData()
-            .then((userData) => {
+        Promise.all([api.getUserData(), api.getCards()])
+            .then(([userData, initialCards]) => {
                 setCurrentUser(userData);
-            }).catch((err) => {
-                console.log(err);
-            });
-    }, [])
-
-
-    useEffect(() => {
-        api.getCards()
-            .then((initialCards) => {
                 setCards(initialCards);
             }).catch((err) => {
                 console.log(err);
