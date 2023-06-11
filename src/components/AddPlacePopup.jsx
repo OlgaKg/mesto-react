@@ -1,9 +1,9 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-  const [name, setName] = React.useState({});
-  const [link, setLink] = React.useState({});
+function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
+  const [name, setName] = React.useState("");
+  const [link, setLink] = React.useState("");
 
   function handleChangeName(e) {
     setName(e.target.value);
@@ -33,8 +33,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isLoading={isLoading}
     >
-      <>
         <input
           className="popup__input popup__input_type_image-name"
           type="text"
@@ -59,7 +59,6 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
           onChange={handleChangeLink}
         />
         <span className="popup__input-error image-link-input-error"></span>
-      </>
     </PopupWithForm>
   );
 }

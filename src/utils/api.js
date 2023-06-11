@@ -12,18 +12,20 @@ class Api {
         };
     }
 
+    _request(url, options) {
+        return fetch(`${this._baseUrl}/${url}`, options).then(this._checkReply)
+    }
+
+
     getUserData() {
-        return fetch(`${this._baseUrl}users/me`, {
+        return this._request(`users/me`, {
             method: 'GET',
             headers: this._headers
         })
-            .then(res => {
-                return this._checkReply(res)
-            })
     }
 
     updateUserData(data) {
-        return fetch(`${this._baseUrl}users/me`, {
+        return this._request(`users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
@@ -31,36 +33,27 @@ class Api {
                 about: data.about
             })
         })
-            .then(res => {
-                return this._checkReply(res)
-            })
     }
 
     updateAvatar(data) {
-        return fetch(`${this._baseUrl}users/me/avatar`, {
+        return this._request(`users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
                 avatar: data.avatar
             })
         })
-            .then(res => {
-                return this._checkReply(res)
-            })
     }
 
     getCards() {
-        return fetch(`${this._baseUrl}cards`, {
+        return this._request(`cards`, {
             method: 'GET',
             headers: this._headers
         })
-            .then(res => {
-                return this._checkReply(res)
-            })
     }
 
     addNewCard(data) {
-        return fetch(`${this._baseUrl}cards`, {
+        return this._request(`cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify({
@@ -68,29 +61,20 @@ class Api {
                 link: data.link
             })
         })
-            .then(res => {
-                return this._checkReply(res)
-            })
     }
 
     addLikeCard(idCard) {
-        return fetch(`${this._baseUrl}cards/${idCard}/likes`, {
+        return this._request(`cards/${idCard}/likes`, {
             method: 'PUT',
             headers: this._headers,
         })
-            .then(res => {
-                return this._checkReply(res)
-            })
     }
 
     removeLikeCard(idCard) {
-        return fetch(`${this._baseUrl}cards/${idCard}/likes`, {
+        return this._request(`cards/${idCard}/likes`, {
             method: 'DELETE',
             headers: this._headers,
         })
-            .then(res => {
-                return this._checkReply(res)
-            })
     }
 
     changeLikeCardStatus(idCard, isLiked) {
@@ -102,7 +86,7 @@ class Api {
     }
 
     deleteCard(idCard) {
-        return fetch(`${this._baseUrl}cards/${idCard}`, {
+        return this._request(`cards/${idCard}`, {
             method: 'DELETE',
             headers: this._headers
         })

@@ -10,7 +10,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards, onC
         <main className="content">
             <section className="profile">
                 <button type="button" className="profile__edit-avatar-btn" onClick={onEditAvatar}>
-                    <img className="profile__avatar" src={currentUser.avatar} alt="Аватар Жак-Ив Кусто" />
+                    <img className="profile__avatar" src={currentUser.avatar} alt="Аватар пользователя" />
                 </button>
                 <div className="profile__info">
                     <div className="profile__bio">
