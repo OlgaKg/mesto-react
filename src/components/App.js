@@ -77,40 +77,35 @@ function App() {
             }).catch((err) => { console.log(err) });
     }
 
-    function handleUpdateUser(data) {
+    function handleSubmit(request) {
         setIsLoading(true);
-        api.updateUserData(data)
-            .then((newUserData) => {
-                setCurrentUser(newUserData);
-                closeAllPopups()
-            }).catch((err) => { console.log(err) })
-            .finally(() => {
-                setIsLoading(false)
-            })
+        request()
+            .then(closeAllPopups)
+            .catch(console.error)
+            .finally(() => setIsLoading(false));
     }
 
-    function handleUpdateAvatar(data) {
-        setIsLoading(true);
-        api.updateAvatar(data)
-            .then((newAvatar) => {
-                setCurrentUser(newAvatar);
-                closeAllPopups()
-            }).catch((err) => { console.log(err) })
-            .finally(() => {
-                setIsLoading(false)
-            })
+    function handleUpdateUser(inputValues) {
+        function makeRequest() {
+            return api.updateUserData(inputValues).then(setCurrentUser);
+        }
+        handleSubmit(makeRequest);
     }
 
-    function handleAddPlaceSubmit(data) {
-        setIsLoading(true);
-        api.addNewCard(data)
-            .then((newCard) => {
-                setCards([newCard, ...cards]);
-                closeAllPopups()
-            }).catch((err) => { console.log(err) })
-            .finally(() => {
-                setIsLoading(false)
+    function handleUpdateAvatar(inputValues) {
+        function makeRequest() {
+            return api.updateAvatar(inputValues).then(setCurrentUser);
+        }
+        handleSubmit(makeRequest);
+    }
+
+    function handleAddPlaceSubmit(inputValues) {
+        function makeRequest() {
+            return api.addNewCard(inputValues).then((newCard) => {
+                setCards([newCard, ...cards])
             })
+        }
+        handleSubmit(makeRequest);
     }
 
     useEffect(() => {
@@ -139,26 +134,19 @@ function App() {
 
                     <EditAvatarPopup
                         isOpen={isEditAvatarPopupOpen}
-                        onUpdateAvatar={handleUpdateAvatar}
-                        onClose={closeAllPopups}
-                        isLoading={isLoading} />
+                        onUpdateAvatar={handleUpdateAvatar} />
 
                     <EditProfilePopup
                         isOpen={isEditProfilePopupOpen}
-                        onUpdateUser={handleUpdateUser}
-                        onClose={closeAllPopups}
-                        isLoading={isLoading} />
+                        onUpdateUser={handleUpdateUser} />
 
                     <AddPlacePopup
                         isOpen={isAddPlacePopupOpen}
-                        onAddPlace={handleAddPlaceSubmit}
-                        onClose={closeAllPopups}
-                        isLoading={isLoading} />
+                        onAddPlace={handleAddPlaceSubmit} />
 
                     <ImagePopup
                         isOpen={isImgPopupOpen}
-                        card={selectedCard}
-                        onClose={closeAllPopups} />
+                        card={selectedCard} />
                 </div>
             </CurrentUserContext.Provider>
         </AppContext.Provider>
